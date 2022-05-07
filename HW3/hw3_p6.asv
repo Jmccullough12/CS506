@@ -16,24 +16,24 @@ U = ones(T,1);
 
 loss = zeros(N+1,T);
 
-
-w_t = ones(N,T);
+%x = zeros (1,N);
+w = ones(N,T);
 for t=1:T
-    
-   
-  
-    U(t) = sum(u(:,t));
-    for i=1:N
-        w_t(i,t) = (R1 * u(i,t)) / U(t);
-    end
 
+   
+    
+
+    U(t) = sum(u(:,t));
+    %w_t = zeros(1,N);
+   
+    
     found = false;
     for j=1:m
         
         temp = dot(w_t(:,t), (data(j,1:N) * data(j,N+1)));
         if temp < 0
             for i=1:N
-                loss(i,t) = -1 * (data(j,i) * data(j,N+1));
+                loss(i,t) = -1 * (data(j,i)* data(j,N+1));
             end
             found = true;       
         end
@@ -44,17 +44,28 @@ for t=1:T
     end
 
     if ~found
+        %x = u(1:N,t)
+        t
         break;
     end
     
+    for i=1:N
+        w_t(i,t) = (R1 * u(i,t)) / U(t);
+    end
+
     for i=1:N+1
         u(i,t+1) = u(i,t) * (1 - eta * (loss(i,t) + R2/2)/R2);
-        
+        %u(i,t+1) = u(i,t) * (1 - eta * (loss(i,t) / R2));
     end
     
+   
     
 end
 
+%if sum(x) == 0
+    %x = u(:,T+1)
+%end
+
+%x;
 w_t(:,t)
-sum(w_t(:,t))
 
