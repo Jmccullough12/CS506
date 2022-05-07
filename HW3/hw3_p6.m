@@ -1,3 +1,7 @@
+% CS-506 Homework3 - Problem 6
+% Jeb and Jacob
+
+
 data = [-1/2 1/3 1; 3/4 -1/4 1; 1/2 -1/3 -1; -3/4 1/4 -1];
 
 n = 2;
