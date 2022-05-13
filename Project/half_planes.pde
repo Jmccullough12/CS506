@@ -16,28 +16,7 @@ void setup()
   if (random) randomDistribution();
   else evenDistribution();
   
-  //PVector A = new PVector(1, 1);
-  //PVector B = new PVector(4, 4);
-  //PVector C = new PVector(1, 8);
-  //PVector D = new PVector(2, 4);
-  
-  //PVector intersection = lineLineIntersection(A, B, C, D);
-       
-  //      if (intersection.x == Float.MAX_VALUE &&
-  //          intersection.y == Float.MAX_VALUE)
-  //      {
-  //          println("The given lines AB and CD are parallel.");
-  //      }
-       
-  //      else
-  //      {
-  //          // NOTE: Further check can be applied in case
-  //          // of line segments. Here, we have considered AB
-  //          // and CD as lines
-  //         print("The intersection of the given lines AB " + 
-  //                             "and CD is: ");
-  //         print(intersection);
-  //      }
+ 
  
 }
 
@@ -179,33 +158,3 @@ void randomDistribution(){
     robots.add(new Robot(x,y));
   }
 }
-
-
-
-PVector lineLineIntersection(PVector A, PVector B, PVector C, PVector D)
-    {
-        // Line AB represented as a1x + b1y = c1
-        float a1 = B.y - A.y;
-        float b1 = A.x - B.x;
-        float c1 = a1*(A.x) + b1*(A.y);
-       
-        // Line CD represented as a2x + b2y = c2
-        float a2 = D.y - C.y;
-        float b2 = C.x - D.x;
-        float c2 = a2*(C.x)+ b2*(C.y);
-       
-        float determinant = a1*b2 - a2*b1;
-       
-        if (determinant == 0)
-        {
-            // The lines are parallel. This is simplified
-            // by returning a pair of FLT_MAX
-            return new PVector(Float.MAX_VALUE, Float.MAX_VALUE);
-        }
-        else
-        {
-            float x = (b2*c1 - b1*c2)/determinant;
-            float y = (a1*c2 - a2*c1)/determinant;
-            return new PVector(x, y);
-        }
-    }
